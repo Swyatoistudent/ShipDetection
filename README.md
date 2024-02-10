@@ -1,5 +1,5 @@
 # ShipDetection
-I used the U-Net model architecture (link), which was implemented using TensorFlow. Images of size () were provided as input to the model. For training, 2000 examples from the training set were used, containing one or more ships, as well as 20 examples without ships. The validation set was generated from the training data (validation_split=0.2).
+I used the U-Net model architecture (https://arxiv.org/pdf/1505.04597.pdf?ref=machinelearningnuggets.com), which was implemented using TensorFlow. Images of size () were provided as input to the model. For training, 2000 examples from the training set were used, containing one or more ships, as well as 20 examples without ships. The validation set was generated from the training data (validation_split=0.2).
 
 File Descriptions:
 
