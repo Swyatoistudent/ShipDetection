@@ -4,6 +4,9 @@ from tensorflow.keras import backend as K
 from IPython.display import clear_output
 import os
 
+from test_model import display
+from data_prep import X_train,Y_train,X_test,Y_test
+
 def dice_coef(y_true, y_pred, smooth):
     y_true_f = K.flatten(y_true)
     y_pred_f = K.flatten(y_pred)
@@ -18,8 +21,8 @@ def dice_coef_loss(y_true, y_pred, smooth=10e-6):
 class DisplayCallback(tf.keras.callbacks.Callback):
   def on_epoch_end(self, epoch, logs=None):
     clear_output(wait=True)
-    sample_image = X_valid[1]
-    sample_mask = y_valid[1]
+    sample_image = X_test[1]
+    sample_mask = Y_test[1]
     prediction = model.predict(sample_image[tf.newaxis, ...])[0]
     prediction = (prediction>0.5).astype(np.uint8)
     display([sample_image,sample_mask,prediction])
@@ -40,5 +43,4 @@ callbacks = [
 ]
 
 model.compile(optimizer='adam', loss=dice_coef_loss, metrics=['accuracy'])
-model.fit(X_train, y_train, validation_split= 0.2, batch_size=32, epochs=40, callbacks=callbacks)
-
+model.fit(X_train, Y_train, validation_split= 0.2, batch_size=32, epochs=40, callbacks=callbacks)
