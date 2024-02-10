@@ -1,3 +1,8 @@
+import tensorflow as tf
+
+
+IMG_SIZE = (256,256)
+
 # unet architecture
 inputs = tf.keras.layers.Input(IMG_SIZE+(3,))
 
@@ -63,4 +68,3 @@ u9 = tf.keras.layers.ReLU()(u9)
 outputs = tf.keras.layers.Conv2D(1, (1, 1), activation='sigmoid')(u9)
 
 model = tf.keras.Model(inputs=[inputs], outputs=[outputs])
-model.compile(optimizer='adam', loss=dice_coef_loss, metrics=['accuracy'])
